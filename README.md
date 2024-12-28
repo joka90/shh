@@ -27,6 +27,29 @@ cargo build --release
 install -Dm 755 -t /usr/local/bin target/release/shh
 ```
 
+### From source using docker
+
+You need to have [docker](https://docs.docker.com/get-started/get-docker/) or [other](https://podman.io/docs#installing-podman) container runtime installed (override makefile via DOCKER=podman).
+
+```
+make all
+install -Dm 755 -t /usr/local/bin target/x86_64-unknown-linux-gnu/release/shh
+```
+
+If you want to crosscompile for armv7/aarch64
+
+```
+make all ARCH_TARGET=armv7-unknown-linux-gnueabihf
+scp target/armv7-unknown-linux-gnueabihf/release/shh my-armv7-machine:bin/
+```
+
+or
+
+```
+make all ARCH_TARGET=aarch64-unknown-linux-gnu
+scp target/aarch64-unknown-linux-gnu/release/shh my-aarch64-machine:bin/
+```
+
 ### Debian (or Debian based distribution)
 
 See [GitHub releases](https://github.com/desbma/shh/releases) for Debian packages built for each tagged version.
